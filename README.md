@@ -23,6 +23,7 @@ Going to keep this mod fairly simple and efficent to add to any SPT install.
 
 ## Before 1.0 Release:
 
+- [ ] Add GHA to Put plugin into a .zip with /BepinEx/plugin to match normal plugin relases
 - [ ] Tweak options so they 'feel' good out of the box
 - [ ] Optimize bot memory usage
 - [ ] Write better memory caching system (currently just hardcoding times eveywhere)
