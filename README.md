@@ -25,7 +25,7 @@ Going to keep this mod fairly simple and efficent to add to any SPT install.
 
 - [ ] Tweak options so they 'feel' good out of the box
 - [ ] Optimize bot memory usage
-- [ ] Write better memory caching system (currently just hardcoding times eveywhere
+- [ ] Write better memory caching system (currently just hardcoding times eveywhere)
 - [ ] Expose options to allow bots to filter for lootables (Containers vs Corpses vs Static Spawns)
 - [ ] Expose options to allow bots to filter which exfils they visit
 - [ ] Expose options to allow bots to vist locations more than once
