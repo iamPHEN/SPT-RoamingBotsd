@@ -18,18 +18,18 @@ Big shoutout to dewardiandev for helping me get into modding for SPT.
 
 Going to keep this mod fairly simple and efficent to add to any SPT install.
 
-Before 1.0 Release:
+## Before 1.0 Release:
 
-[] Tweak options so they 'feel' good out of the box
-[] Optimize bot memory usage
-[] Write better memory caching system (currently just hardcoding times eveywhere
-[] Expose options to allow bots to filter for lootables (Containers vs Corpses vs Static Spawns)
-[] Expose options to allow bots to filter which exfils they visit
-[] Expose options to allow bots to vist locations more than once
-[] Reivew everything for spelling errors -- execpt the repo name -- I can't fix that now its too late
+- [ ] Tweak options so they 'feel' good out of the box
+- [ ] Optimize bot memory usage
+- [ ] Write better memory caching system (currently just hardcoding times eveywhere
+- [ ] Expose options to allow bots to filter for lootables (Containers vs Corpses vs Static Spawns)
+- [ ] Expose options to allow bots to filter which exfils they visit
+- [ ] Expose options to allow bots to vist locations more than once
+- [ ] Reivew everything for spelling errors -- execpt the repo name -- I can't fix that now its too late
 
-For 1.1 Release:
+## For 1.1 Release:
 
-[] Add options to allow bots to stay in their new zone when the roam there -- currently the assault patrol makes them roam back to their previous zone
-[] Add options to keep "bot groups" together -- currently they may wander to diffrent POIs 
-[] Add options to add roaming logic to more bots than PMCs and Scavs (Bosses, Cultists, Followers).
+- [ ] Add options to allow bots to stay in their new zone when the roam there -- currently the assault patrol makes them roam back to their previous zone
+- [ ] Add options to keep "bot groups" together -- currently they may wander to diffrent POIs 
+- [ ] Add options to add roaming logic to more bots than PMCs and Scavs (Bosses, Cultists, Followers).
