@@ -7,8 +7,11 @@ If the bot senses enemies or is engaged in combat it will disable the roaming lo
 
 Yes this works will work with SAIN, Looting Bots, Questing Bots. Highly recommended you try this with those mods installed.
 
+
 Built for SPT 3.11: https://hub.sp-tarkov.com/
+
 Requires big brain: https://github.com/DrakiaXYZ/SPT-BigBrain/
+
 
 # Thanks
 
