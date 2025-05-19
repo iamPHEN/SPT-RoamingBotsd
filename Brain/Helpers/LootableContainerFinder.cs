@@ -13,7 +13,7 @@ using EFT.InventoryLogic;
 
 namespace RoamingBots.Brain.Helpers
 {
-    internal class LootableContainerFinder
+    internal class LootableContainerFinder : POIFinder
     {
         public bool ShowContainers { get; set; } = true;
 

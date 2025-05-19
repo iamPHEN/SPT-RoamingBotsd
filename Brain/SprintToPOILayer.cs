@@ -9,6 +9,7 @@ using RoamingBots.Extensions;
 using RoamingBots.Helpers;
 using ExilBots.Layers;
 using UnityEngine;
+using RoamingBots.ConsoleCommands;
 
 #nullable enable
 
@@ -88,51 +89,28 @@ namespace RoamingBots.Brain
             return Bot.MoveToPosition != null;
         }
 
-        private float _RefreshCacheTime = 0f;
-        private List<PointOfInterest> CachedPOIs = new();
-        private static ExfilFinder ExfilPOIs = new();
-        private static LootableContainerFinder Containers = new();
-        private static SpawnPointFinder SpawnZoneFinder = new();
-        private static QuestPOIFinder QuestZoneFinder = new();
+
         private int LookExfilChance => RoamingBotsPlugin.SprintToExfilChance.Value;
         private int LookLootableChance => RoamingBotsPlugin.SprintToLootableChance.Value;
         private int LookSpawnPointChance => RoamingBotsPlugin.SprintToSpawnPointsChance.Value;
         private int LookQuestsChance => RoamingBotsPlugin.SprintToQuestsChance.Value;
-
         //This can be expensive
         private bool TryFindPOIForBot(BotComponent bot)
         {
             if (bot.BotOwner == null)
                 return false;
 
-            if(_RefreshCacheTime < Time.time)
-            {
-                _RefreshCacheTime = Time.time + 5f;
-                CachedPOIs.Clear();
-
-                if(LookExfilChance > 0) 
-                    ExfilPOIs.RefreshData(CachedPOIs, bot.BotOwner.GetPlayer);
-
-                if(LookLootableChance > 0) 
-                    Containers.RefreshData(CachedPOIs, bot.BotOwner.GetPlayer);
-
-                if(LookSpawnPointChance > 0) 
-                    SpawnZoneFinder.RefreshData(CachedPOIs, bot.BotOwner.GetPlayer);
-
-                if(LookQuestsChance > 0) 
-                    QuestZoneFinder.RefreshData(CachedPOIs, bot.BotOwner.GetPlayer);
-            }
-
             string RandomPOIOwner = nameof(ExfilFinder);
+
 
             int totalWeight = LookExfilChance + LookLootableChance + LookSpawnPointChance + LookQuestsChance;
             int randomNumber = Random.Range(0, totalWeight);
             int RangeExfil = LookExfilChance;
             int RangeLootable = LookExfilChance + LookLootableChance;
-            int RangeSpawn= LookExfilChance + LookLootableChance + LookSpawnPointChance;
+            int RangeSpawn = LookExfilChance + LookLootableChance + LookSpawnPointChance;
             int RangeQuests = LookExfilChance + LookLootableChance + LookSpawnPointChance + LookQuestsChance;
 
-            switch (randomNumber) 
+            switch (randomNumber)
             {
                 case int n when Enumerable.Range(0, RangeExfil).Contains(n):
                     RandomPOIOwner = nameof(ExfilFinder);
@@ -148,17 +126,17 @@ namespace RoamingBots.Brain
                     break;
             }
 
-            var EliglbePois = CachedPOIs
+            var EliglbePois = POICache.CachedPOIs
                 .Where(d => !Bot.ReachedPOI.Contains(d) && d.Owner == RandomPOIOwner);
 
             PointOfInterest RandomPoi = EliglbePois.PickRandom();
 
-            if(RoamingBotsPlugin.DebugMode.Value)
-            {
-                RoamingBotsPlugin.LogSource.LogDebug($"{bot.name} SprintPOI head towards: {RandomPoi.Name} {RandomPoi.Position} in {EliglbePois.Count()}/{CachedPOIs.Count()} POIs: Dist: {Vector3.Distance(RandomPoi.Position, bot.BotOwner.Position)}");
-            }
-
             Bot.MoveToPosition = RandomPoi;
+
+            if (RoamingBotsPlugin.DebugMode.Value)
+            {
+                RoamingBotsPlugin.LogSource.LogDebug($"{bot.BotOwner.name} SprintPOI head towards: {RandomPoi.Name} {RandomPoi.Position} in {EliglbePois.Count()}/{POICache.CachedPOIs.Count()} POIs: Dist: {Vector3.Distance(RandomPoi.Position, bot.BotOwner.Position)}");
+            }
 
             return true;
         }

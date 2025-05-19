@@ -3,33 +3,14 @@ using System.Linq;
 using Comfort.Common;
 using EFT;
 using EFT.Interactive;
+using RoamingBots.Brain.Helpers;
 using UnityEngine;
 
 #nullable enable
 
 namespace RoamingBots.Helpers
 {
-    public struct PointOfInterest
-    {
-        public string Name { get; set; }
-        public string? Owner { get; set; }
-        public Vector3 Position { get; set; }
-
-        public override int GetHashCode()
-        {
-            // Allow overflow
-            unchecked 
-            {
-                int hash = 17;
-                hash = hash * 11 + Name.GetHashCode();
-                hash = hash * 19 + (Owner?.GetHashCode() ?? 0);
-                hash = hash * 97 + Position.GetHashCode();
-                return hash;
-            }
-        }
-    }
-
-    public class ExfilFinder
+    public class ExfilFinder : POIFinder
     {
         public bool ShowEligible { get; set; } = true;
         public bool ShowNotEligible { get; set; } = true;

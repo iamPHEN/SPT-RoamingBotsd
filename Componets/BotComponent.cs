@@ -8,20 +8,11 @@ using RoamingBots.Helpers;
 using ExilBots.Layers;
 using UnityEngine;
 
-#nullable enable
-
 namespace RoamingBots.Componets
 {
-    public class BotTalk
-    {
-        internal void GroupSay(EPhraseTrigger Phrase, object value, bool v1, int v2)
-        {
-            throw new NotImplementedException();
-        }
-    }
     public class BotComponent : MonoBehaviour
     {
-        public BotOwner? BotOwner { get; internal set; }
+        public BotOwner BotOwner { get; internal set; }
 
         // List of POIs the bot shouldn't revist.
         public HashSet<PointOfInterest> ReachedPOI = new();
@@ -36,12 +27,10 @@ namespace RoamingBots.Componets
 
         // Exfil Varaibles
         public float MinDistanceToExtract { get; set; } = 10f;
-        public BotTalk? Talk { get; internal set; }
 
         public void Init(BotOwner botOwner)
         {
             BotOwner = botOwner;
-            Talk = new BotTalk();
         }
         public void LogExtractionOfBot(BotOwner bot, Vector3 point, string reason, ExfiltrationPoint exfil)
         {
@@ -61,11 +50,10 @@ namespace RoamingBots.Componets
             return true && IsBotAlive;
         }
 
-        public bool IsInCombat => BotOwner?.Memory.IsUnderFire ?? false || HasActiveThreat;
+        public bool IsInCombat => BotOwner != null && (BotOwner.Memory.IsUnderFire || HasActiveThreat);
         public bool HasActiveThreat => BotOwner != null && !(BotOwner.Memory.HaveEnemy || (Time.time - BotOwner.Memory.LastEnemyTimeSeen) > 30f);
-        public bool IsBotAlive => BotOwner?.GetPlayer.IsAlive() ?? false && BotOwner.BotState == EBotState.Active;
+        public bool IsBotAlive => BotOwner != null && BotOwner.GetPlayer.IsAlive() && BotOwner.BotState == EBotState.Active;
         public bool IsBotHealing => BotOwner != null && BotOwner.Medecine.FirstAid.Have2Do && BotOwner.Medecine.SurgicalKit.HaveWork;
-
         public float SprintTimeLeft { get; set; }
     }
 }

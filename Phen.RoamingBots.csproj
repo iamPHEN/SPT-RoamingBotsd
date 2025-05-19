@@ -126,8 +126,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Brain\Actions\SprintToPOIAction.cs" />
+    <Compile Include="Brain\Helpers\PointOfInterest.cs" />
     <Compile Include="Brain\Helpers\QuestPOIFinder.cs" />
+    <Compile Include="Componets\HookObject.cs" />
+    <Compile Include="Componets\POIScanManager.cs" />
     <Compile Include="ConsoleCommands\DebugBotForceLoot.cs" />
+    <Compile Include="ConsoleCommands\POICache.cs" />
     <Compile Include="Plugin\Extensions\BotType.cs" />
     <Compile Include="Brain\Helpers\ExifilFinder.cs" />
     <Compile Include="Brain\Helpers\LootableContainerFinder.cs" />

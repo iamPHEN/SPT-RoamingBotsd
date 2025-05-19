@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using EFT.UI;
+using RoamingBots.Componets;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -10,20 +11,6 @@ namespace RoamingBots.ConsoleCommands
     public class Commands
     {
         private bool Registered { get; set; } = false;
-
-        private static GameObject HookObject
-        {
-            get
-            {
-                var result = GameObject.Find("Application (Main Client)");
-                if (result != null)
-                    return result;
-
-                result = new GameObject("ExfilBots");
-                Object.DontDestroyOnLoad(result);
-                return result;
-            }
-        }
         public void RegisterCommands()
         {
             if (Registered)
@@ -35,7 +22,7 @@ namespace RoamingBots.ConsoleCommands
             {
                 count++;
                 Command.Register();
-                HookObject.GetOrAddComponent(Command.GetType());
+                HookObjectSatic.GetOrAddComponent(Command.GetType());
             }
 
             ConsoleScreen.Log($"Register ExfilBots called with {count} commands.");

@@ -43,6 +43,9 @@ namespace ExilBots.Layers
 
         public override void Update(CustomLayer.ActionData data)
         {
+            if (BotOwner == null)
+                return;
+
             Vector3 point = (Vector3)Bot.MoveToPosition.Value.Position;
             float distance = (point - BotOwner.Position).sqrMagnitude;
 

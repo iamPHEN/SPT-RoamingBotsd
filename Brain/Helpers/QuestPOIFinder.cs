@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace RoamingBots.Brain.Helpers
 {
-    internal class QuestPOIFinder
+    internal class QuestPOIFinder : POIFinder
     {
         public void RefreshData(List<PointOfInterest> Data, Player Player)
         {

@@ -10,7 +10,7 @@ using EFT.Game.Spawning;
 
 namespace RoamingBots.Brain.Helpers
 {
-    public class SpawnPointFinder
+    public class SpawnPointFinder : POIFinder
     {
 
         public void RefreshData(List<PointOfInterest> data, Player player)

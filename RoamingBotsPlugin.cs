@@ -37,6 +37,9 @@ namespace RoamingBots
         [AutoBindBoolConfig("Sprint POI Config", "Enable Bot Roam POIs", "Enables Bots to roam between POIs.", true)]
         public static ConfigEntry<bool> EnableBotSprintPOI { get; set; }
 
+        [AutoBindConfig<float>("Sprint POI Config", "Cache POI Time", "Time in seconds we should be refreshing the POI cache. ", 4f, 1f, 3000f)]
+        public static ConfigEntry<float> CachePOITime { get; set; }
+
         [AutoBindConfig<int>("Sprint POI Config", "Sprint PMC Enable Chance", "Chance that the bot will even try to use the roaming logic when the PMC spawns.", 100, 0, 100, ShowRangeAsPercent = true)]
         public static ConfigEntry<int> SprintEnableBotChancePMC { get; set; }
 
