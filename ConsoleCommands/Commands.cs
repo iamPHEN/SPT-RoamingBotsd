@@ -25,8 +25,8 @@ namespace RoamingBots.ConsoleCommands
                 HookObjectSatic.GetOrAddComponent(Command.GetType());
             }
 
-            ConsoleScreen.Log($"Register ExfilBots called with {count} commands.");
-            RoamingBotsPlugin.LogSource.LogDebug($"Register ExfilBots called with {count} commands.");
+            ConsoleScreen.Log($"Register RoamingBots called with {count} commands.");
+            RoamingBotsPlugin.LogSource.LogDebug($"Register RoamingBots called with {count} commands.");
 
             // Load default configuration
             Registered = true;

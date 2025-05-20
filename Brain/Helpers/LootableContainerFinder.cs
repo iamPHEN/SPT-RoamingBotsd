@@ -15,9 +15,10 @@ namespace RoamingBots.Brain.Helpers
 {
     internal class LootableContainerFinder : POIFinder
     {
-        public bool ShowContainers { get; set; } = true;
+        public bool ShowContainers { get; set; } = RoamingBotsPlugin.EnableBotSprintStaticSpawn.Value;
 
-        public bool ShowCorpses { get; set; } = true;
+        public bool ShowCorpses { get; set; } = RoamingBotsPlugin.EnableBotSprintCorpses.Value;
+        public bool ShowLooseLoot { get; set; } = RoamingBotsPlugin.EnableBotSprintLooseLoot.Value;
 
         //Static Hashset for List of Container IDS
         private static readonly HashSet<string> ContainerFilter =
@@ -61,7 +62,10 @@ namespace RoamingBots.Brain.Helpers
                     AddRecord(nameof(Corpse), Owner.Value.Transform.position, Data);
             }
 
-            // Outside containers (tooboxes, tech cratates, ammo crates, etc)
+            if (!ShowLooseLoot)
+                return;
+
+            // Outside containers and loose loot (tooboxes, tech cratates, ammo crates, etc)
             var lootItems = World.LootItems;
             for (var i = 0; i < lootItems.Count; i++)
             {

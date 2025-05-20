@@ -27,9 +27,10 @@ Going to keep this mod fairly simple and efficent to add to any SPT install.
 - [ ] Tweak options so they 'feel' good out of the box
 - [x] Optimize bot memory usage
 - [x] Write better memory caching system (currently just hardcoding times eveywhere)
-- [ ] Expose options to allow bots to filter for lootables (Containers vs Corpses vs Static Spawns)
-- [ ] Expose options to allow bots to filter which exfils they visit
-- [ ] Expose options to allow bots to vist locations more than once
+- [x] Expose options to allow bots to filter for lootables (Containers vs Corpses vs Static Spawns)
+- [x] Expose options to allow bots to filter which exfils they visit
+- [x] Expose options to allow bots to vist locations more than once (Only Exfils and Spawnpoints)
+- [x] Expose options to allow bots to continue roaming until timeout
 - [ ] Reivew everything for spelling errors -- execpt the repo name -- I can't fix that now its too late
 
 ## For 1.1 Release:
@@ -37,3 +38,4 @@ Going to keep this mod fairly simple and efficent to add to any SPT install.
 - [ ] Add options to allow bots to stay in their new zone when the roam there -- currently the assault patrol makes them roam back to their previous zone
 - [ ] Add options to keep "bot groups" together -- currently they may wander to diffrent POIs 
 - [ ] Add options to add roaming logic to more bots than PMCs and Scavs (Bosses, Cultists, Followers).
+- [ ] Expose options to allow bots to revist lootables more than once without causing bots to run in circles.

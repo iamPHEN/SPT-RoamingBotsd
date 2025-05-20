@@ -42,11 +42,19 @@ namespace RoamingBots.ConsoleCommands
             if (world == null)
                 return;
 
+            if (world.RegisteredPlayers.Count <= 0)
+                return;
+
             if (_RefreshCacheTime < Time.time)
             {
                 Player player = world
                     .RegisteredPlayers?
                     .OfType<Player>().Where(p => p.IsYourPlayer).Random();
+
+                if(player == null || player.IsNullOrDestroyed())
+                {
+                    return;
+                }
 
                 _RefreshCacheTime = Time.time + CacheRefreshTime;
                 CachedPOIs.Clear();

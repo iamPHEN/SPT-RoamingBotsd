@@ -12,8 +12,8 @@ namespace RoamingBots.Helpers
 {
     public class ExfilFinder : POIFinder
     {
-        public bool ShowEligible { get; set; } = true;
-        public bool ShowNotEligible { get; set; } = true;
+        public bool ShowEligible { get; set; } = RoamingBotsPlugin.EnableBotSprintPlayerExfils.Value;
+        public bool ShowNotEligible { get; set; } = RoamingBotsPlugin.EnableBotSprintScavExfils.Value;
 
         public void RefreshData(List<PointOfInterest> OutData, Player Player)
         {

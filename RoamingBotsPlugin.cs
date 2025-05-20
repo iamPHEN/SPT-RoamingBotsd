@@ -34,8 +34,35 @@ namespace RoamingBots
         [AutoBindBoolConfig("xDebugging", "Force Sprint", "Forces all bots to sprint around now", false, Advanced = true)]
         public static ConfigEntry<bool> ForceSprint { get; set; }
 
-        [AutoBindBoolConfig("Sprint POI Config", "Enable Bot Roam POIs", "Enables Bots to roam between POIs.", true)]
+        [AutoBindBoolConfig("Sprint POI Config", "Enable Bot Roam POIs", "Enables Bots to roam between POIs. Master Enable/Disable bot logic.", true)]
         public static ConfigEntry<bool> EnableBotSprintPOI { get; set; }
+
+        [AutoBindBoolConfig("Sprint POI Config Toggles", "Enable Full Sprint Until Timeout", "If Enabled, bots will continue roaming until the full timeout, recommend to disable to allow more intresting logic from LootingBots to takeover.", false)]
+        public static ConfigEntry<bool> EnableBotRoamTillTimeout { get; set; }
+
+        [AutoBindBoolConfig("Sprint POI Config Toggles", "Enable Sprint Corpses", "Toggles Bots to roam to corpses. May cause bots to eventually dogpile into one area.", true)]
+        public static ConfigEntry<bool> EnableBotSprintCorpses { get; set; }
+
+        [AutoBindBoolConfig("Sprint POI Config Toggles", "Enable Loose Loot", "Toggles Bots to loose loot locations.", true)]
+        public static ConfigEntry<bool> EnableBotSprintLooseLoot { get; set; }
+
+        [AutoBindBoolConfig("Sprint POI Config Toggles", "Enable Roam Static Spawns", "Toggles Bots to roam Static Containers.", true)]
+        public static ConfigEntry<bool> EnableBotSprintStaticSpawn { get; set; }
+
+        [AutoBindBoolConfig("Sprint POI Config Toggles", "Enable Roam Scav Exfils", "Toggles Bots to roam Sprint Scav Exfils.", true)]
+        public static ConfigEntry<bool> EnableBotSprintScavExfils { get; set; }
+
+        [AutoBindBoolConfig("Sprint POI Config Toggles", "Enable Roam Player Exfils", "Toggles Bots to roam Sprint Player Exfils.", true)]
+        public static ConfigEntry<bool> EnableBotSprintPlayerExfils { get; set; }
+
+        [AutoBindBoolConfig("Sprint POI Config Toggles", "Enable Roam Spawn Zones", "Toggles Bots to roam to Spawn Zones.", true)]
+        public static ConfigEntry<bool> EnableBotSprintSpawnZones { get; set; }
+
+        [AutoBindBoolConfig("Sprint POI Config Toggles", "Enable Roam SpawnZone Revist", "Toggles Bots to revist SpawnZones.", true)]
+        public static ConfigEntry<bool> EnableBotSprintSpawnZonesRevist { get; set; }
+
+        [AutoBindBoolConfig("Sprint POI Config Toggles", "Enable Roam Spawn Points", "Toggles bots to sprint to spawn points. Noisy, spawnzones are sufficent enough.", false)]
+        public static ConfigEntry<bool> EnableBotSprintSpawnPoints { get; set; }
 
         [AutoBindConfig<float>("Sprint POI Config", "Cache POI Time", "Time in seconds we should be refreshing the POI cache. ", 4f, 1f, 3000f)]
         public static ConfigEntry<float> CachePOITime { get; set; }

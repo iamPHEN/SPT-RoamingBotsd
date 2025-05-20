@@ -10,6 +10,7 @@ namespace ExilBots.Layers
     internal class SprintToPOIAction : CombatAction
     {
 
+        public bool SprintTillTimeout = RoamingBotsPlugin.EnableBotRoamTillTimeout.Value;
         static SprintToPOIAction()
         {
         }
@@ -57,6 +58,10 @@ namespace ExilBots.Layers
                 }
                 Bot.ReachedPOI.Add(Bot.MoveToPosition.Value);
                 Bot.MoveToPosition = null;
+                if (!SprintTillTimeout)
+                {
+                    Bot.SprintTimeLeft = 0;
+                }
             }
 
             float stamina = BotOwner.GetPlayer.Physical.Stamina.NormalValue;
@@ -134,6 +139,10 @@ namespace ExilBots.Layers
                         }
                         Bot.ReachedPOI.Add(Bot.MoveToPosition.Value);
                         Bot.MoveToPosition = null;
+                        if (!SprintTillTimeout)
+                        {
+                            Bot.SprintTimeLeft = 0;
+                        }
                     }
                 }
                 else
@@ -144,6 +153,10 @@ namespace ExilBots.Layers
                     }
                     Bot.ReachedPOI.Add(Bot.MoveToPosition.Value);
                     Bot.MoveToPosition = null;
+                    if (!SprintTillTimeout)
+                    {
+                        Bot.SprintTimeLeft = 0;
+                    }
                 }
             }
         }
