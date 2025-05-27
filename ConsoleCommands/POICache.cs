@@ -26,13 +26,44 @@ namespace RoamingBots.ConsoleCommands
         private static QuestPOIFinder QuestZoneFinder = new();
         private float CacheRefreshTime => RoamingBotsPlugin.CachePOITime.Value;
 
-        private int LookExfilChance => RoamingBotsPlugin.SprintToExfilChance.Value;
-        private int LookLootableChance => RoamingBotsPlugin.SprintToLootableChance.Value;
-        private int LookSpawnPointChance => RoamingBotsPlugin.SprintToSpawnPointsChance.Value;
-        private int LookQuestsChance => RoamingBotsPlugin.SprintToQuestsChance.Value;
+        private static int LookExfilChance => RoamingBotsPlugin.SprintToExfilChance.Value;
+        private static int LookLootableChance => RoamingBotsPlugin.SprintToLootableChance.Value;
+        private static int LookSpawnPointChance => RoamingBotsPlugin.SprintToSpawnPointsChance.Value;
+        private static int LookQuestsChance => RoamingBotsPlugin.SprintToQuestsChance.Value;
         public void Update()
         {
             RefreshData();
+        }
+
+        public static IEnumerable<PointOfInterest> GetRandomPoi()
+        {
+            string RandomPOIOwner = nameof(ExfilFinder);
+
+            int totalWeight = LookExfilChance + LookLootableChance + LookSpawnPointChance + LookQuestsChance;
+            int randomNumber = Random.Range(0, totalWeight);
+            int RangeExfil = LookExfilChance;
+            int RangeLootable = LookExfilChance + LookLootableChance;
+            int RangeSpawn = LookExfilChance + LookLootableChance + LookSpawnPointChance;
+            int RangeQuests = LookExfilChance + LookLootableChance + LookSpawnPointChance + LookQuestsChance;
+
+            switch (randomNumber)
+            {
+                case int n when Enumerable.Range(0, RangeExfil).Contains(n):
+                    RandomPOIOwner = nameof(ExfilFinder);
+                    break;
+                case int n when Enumerable.Range(RangeExfil, RangeLootable).Contains(n):
+                    RandomPOIOwner = nameof(LootableContainerFinder);
+                    break;
+                case int n when Enumerable.Range(RangeLootable, RangeSpawn).Contains(n):
+                    RandomPOIOwner = nameof(SpawnPointFinder);
+                    break;
+                case int n when Enumerable.Range(RangeSpawn, RangeQuests).Contains(n):
+                    RandomPOIOwner = nameof(QuestPOIFinder);
+                    break;
+            }
+
+            return POICache.CachedPOIs
+                .Where(d => d.Owner == RandomPOIOwner);
         }
 
         public void RefreshData()
