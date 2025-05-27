@@ -14,7 +14,7 @@ using RoamingBots.Brain;
 
 namespace RoamingBots
 {
-    [BepInPlugin("phen.exfilbots", "phen-exfilbots", "1.0.0")]
+    [BepInPlugin("phen.roamingbots", "phen-roamingbots", "1.0.0")]
     [BepInDependency(ModInterop.BigBrain, BepInDependency.DependencyFlags.HardDependency)]
     public class RoamingBotsPlugin : BaseUnityPlugin
     {
@@ -67,7 +67,7 @@ namespace RoamingBots
         [AutoBindConfig<float>("Sprint POI Config", "Cache POI Time", "Time in seconds we should be refreshing the POI cache. ", 4f, 1f, 3000f)]
         public static ConfigEntry<float> CachePOITime { get; set; }
 
-        [AutoBindConfig<int>("Sprint POI Config", "Sprint PMC Enable Chance", "Chance that the bot will even try to use the roaming logic when the PMC spawns.", 100, 0, 100, ShowRangeAsPercent = true)]
+        [AutoBindConfig<int>("Sprint POI Config", "Sprint PMC Enable Chance", "Chance that the bot will even try to use the roaming logic when the PMC spawns.", 80, 0, 100, ShowRangeAsPercent = true)]
         public static ConfigEntry<int> SprintEnableBotChancePMC { get; set; }
 
         [AutoBindConfig<int>("Sprint POI Config", "Sprint Scav Enable Chance", "Chance that the bot will even try to use the roaming logic when the Scav spawns.", 60, 0, 100, ShowRangeAsPercent = true)]
