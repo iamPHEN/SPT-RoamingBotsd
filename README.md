@@ -24,18 +24,18 @@ Going to keep this mod fairly simple and efficent to add to any SPT install.
 ## Before 1.0 Release:
 
 - [ ] Add GHA to Put plugin into a .zip with /BepinEx/plugin to match normal plugin relases
-- [ ] Tweak options so they 'feel' good out of the box
+- [x] Tweak options so they 'feel' good out of the box
 - [x] Optimize bot memory usage
 - [x] Write better memory caching system (currently just hardcoding times eveywhere)
 - [x] Expose options to allow bots to filter for lootables (Containers vs Corpses vs Static Spawns)
 - [x] Expose options to allow bots to filter which exfils they visit
 - [x] Expose options to allow bots to vist locations more than once (Only Exfils and Spawnpoints)
 - [x] Expose options to allow bots to continue roaming until timeout
-- [ ] Reivew everything for spelling errors -- execpt the repo name -- I can't fix that now its too late
+- [x] Reivew everything for spelling errors -- execpt the repo name -- I can't fix that now its too late
 
 ## For 1.1 Release:
 
 - [ ] Add options to allow bots to stay in their new zone when the roam there -- currently the assault patrol makes them roam back to their previous zone
 - [ ] Add options to keep "bot groups" together -- currently they may wander to diffrent POIs 
-- [ ] Add options to add roaming logic to more bots than PMCs and Scavs (Bosses, Cultists, Followers).
+- [ ] Add options to add roaming logic to more bots than PMCs and Scavs (Bosses, Cultists, Followers, Marksman Scavs).
 - [ ] Expose options to allow bots to revist lootables more than once without causing bots to run in circles.
