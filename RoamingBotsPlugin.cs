@@ -22,9 +22,10 @@ namespace RoamingBots
 
         public static ManualLogSource LogSource;
 
-        [AutoBindConfig<int>("Layer", "SprintToPOIPriority", "Priorty for SprintToPOI Layer to appear on Roamable Scavs and PMCs", 4, 0, 100, Advanced = true)]
+        [AutoBindConfig<int>("Layer", "SprintToPOIPriority", "Priorty for SprintToPOI Layer to appear on Roamable Scavs and PMCs", 3, 0, 100, Advanced = true)]
         public static ConfigEntry<int> SprintToPOIPriority { get; set; }
 
+#if DEBUG
         [AutoBindBoolConfig("xDebugging", "Debug Bot Data", "Enables Bot Data ESP", false, Advanced = true)]
         public static ConfigEntry<bool> DebugBotData { get; set; }
 
@@ -33,6 +34,7 @@ namespace RoamingBots
 
         [AutoBindBoolConfig("xDebugging", "Force Sprint", "Forces all bots to sprint around now", false, Advanced = true)]
         public static ConfigEntry<bool> ForceSprint { get; set; }
+#endif
 
         [AutoBindBoolConfig("Sprint POI Config", "Enable Bot Roam POIs", "Enables Bots to roam between POIs. Master Enable/Disable bot logic.", true)]
         public static ConfigEntry<bool> EnableBotSprintPOI { get; set; }
@@ -85,7 +87,7 @@ namespace RoamingBots
         [AutoBindConfig<int>("Sprint POI Config", "Roam SpawnPoints Chance", "Weight for bots to roam to SpawnPoints, if 0 then don't look", 5, 0, 100, ShowRangeAsPercent = true)]
         public static ConfigEntry<int> SprintToSpawnPointsChance { get; set; }
 
-        [AutoBindConfig<float>("Sprint POI Config", "Sprint CoolDown Secs", "Min Cooldown before this AI will be allowed to sprint again to the next point.", 300f, 0f, 3000f)]
+        [AutoBindConfig<float>("Sprint POI Config", "Sprint CoolDown Secs", "Min Cooldown before this AI will be allowed to sprint again to the next point.", 60f, 0f, 3000f)]
         public static ConfigEntry<float> SprintCoolDownSecs { get; set; }
 
         [AutoBindConfig<float>("Sprint POI Config", "Sprint MinDistance Visit", "Min distance before the AI considered they've visted a point.", 20f, 0f, 1000f)]
