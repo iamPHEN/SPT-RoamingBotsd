@@ -192,19 +192,23 @@ namespace RoamingBots.ConsoleCommands
         private void RenderDebugTextWindowData(Player Enemy, float boxPositionX, float boxPositionY)
         {
 
+            var snapshot = Current;
+            var camera = snapshot?.Camera;
+            if (camera == null)
+                return;
+
+            if (Enemy == null || Enemy.AIData == null)
+                return;
+
             var ennemyHealthController = Enemy.HealthController;
             var ennemyHandController = Enemy.HandsController;
 
             if (ennemyHealthController is not { IsAlive: true })
                 return;
 
-            var snapshot = Current;
-            var camera = snapshot?.Camera;
-            if (camera == null)
-                return;
-
             var playerColors = GetPlayerColors(Enemy);
             var position = Enemy.Transform.position;
+
 
             var weaponText = ennemyHandController != null && ennemyHandController.Item is Weapon weapon ? weapon.ShortName.Localized() : string.Empty;
             var bodyPartHealth = ennemyHealthController.GetBodyPartHealth(EBodyPart.Common);
@@ -218,10 +222,10 @@ namespace RoamingBots.ConsoleCommands
                     weaponText,
                     Mathf.Round(currentPlayerHealth * 100 / maximumPlayerHealth),
                     distanceText,
-                    Enemy?.AIData?.BotOwner.name ?? Enemy?.Profile.Nickname ?? "",
-                    Enemy?.AIData?.BotOwner?.Brain?.BaseBrain.ShortName() ?? "").Trim();
+                    Enemy.AIData.BotOwner.name ?? Enemy.Profile.Nickname,
+                    Enemy.AIData.BotOwner.Brain?.BaseBrain.ShortName() ?? "").Trim();
 
-            BotComponent? bot = Enemy?.GetComponent<BotComponent>();
+            BotComponent bot = Enemy.GetComponent<BotComponent>();
             if (bot != null && bot.BotOwner && Enemy)
             {
                 ActorDataStruct Data = new ActorDataStruct(bot.BotOwner, 0f, Enemy);
